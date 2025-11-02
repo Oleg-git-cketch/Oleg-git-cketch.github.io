@@ -8,11 +8,35 @@ window.addEventListener("scroll", () => {
     });
 });
 
+// Плавный скролл с учетом фиксированного header
+const header = document.querySelector('header');
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            // высота header
+            const headerHeight = header.offsetHeight;
+            // позиция цели относительно документа
+            const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 10; // -10 для отступа
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+
 // MATRIX
 const canvas = document.getElementById('matrix');
 const ctx = canvas.getContext('2d');
 
-function resizeCanvas() { canvas.height = window.innerHeight; canvas.width = window.innerWidth; }
+function resizeCanvas() {
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+}
 resizeCanvas();
 
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>:{}[]()#@";
@@ -25,9 +49,9 @@ function draw() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#00bfff";
   ctx.font = fontSize + "px monospace";
-  for(let i=0;i<drops.length;i++){
+  for(let i=0; i<drops.length; i++){
     const text = chars[Math.floor(Math.random()*chars.length)];
-    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+    ctx.fillText(text, i*fontSize, drops[i]*fontSize);
     if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
     drops[i]++;
   }

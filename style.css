@@ -1,5 +1,6 @@
 /* ===== GLOBAL ===== */
 * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+html { scroll-padding-top: 80px; } /* <-- высота header + отступ */
 body {
   background: #0a0a0a;
   font-family: 'Segoe UI', sans-serif;
@@ -39,7 +40,7 @@ header {
   text-align:center;
   padding:0 10%;
   overflow:hidden;
-  background: rgba(10,10,10,0.15); /* прозрачный */
+  background: rgba(10,10,10,0.15);
 }
 #hero::before,
 #hero::after {
@@ -104,7 +105,7 @@ section {
   transition: all 0.8s ease-out;
   position:relative;
   z-index:1;
-  background: rgba(10,10,10,0.3); /* легкая подсветка */
+  background: rgba(10,10,10,0.3);
   border-radius:15px;
   margin-bottom:50px;
 }
