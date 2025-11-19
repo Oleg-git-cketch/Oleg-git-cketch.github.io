@@ -186,5 +186,3 @@ footer { text-align:center; padding:20px; font-size:0.9em; color:#777; backgroun
   .hero-content p{ font-size:1rem; }
   .skills-grid{ grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); }
 }
-
-/*.*/
